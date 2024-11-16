@@ -132,6 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
             case "snow":
                 imageFile = "snowy-condition.jpg";
                 break; 
+            case "broken clouds":
+                imageFile = "cloudy-condition.jpg";
+                break; 
             default:
                 imageFile = "cloudy-condition.jpg";
         }
