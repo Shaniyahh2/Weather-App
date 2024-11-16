@@ -80,13 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
       timeShow.innerHTML = `${hours}:${minutes}:${seconds}`;
       nameShow.innerHTML = data.name;
       //iconShow.src = `./icons/day/${data.weather[0].icon}.svg`;
+
+      const iconShow = document.querySelector(".icoo");
+      iconShow.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      iconShow.alt = data.weather[0].description;
   
       cloudShow.innerHTML = `${data.clouds.all}%`;
       humidityShow.innerHTML = `${data.main.humidity}%`;
       windShow.innerHTML = `${data.wind.speed} km/h`;
 
-      const iconCode = data.weather[0].icon;
-      iconShow.src = 'https://openweathermap.org/img/wn/${iconCode}@2x.png';
+      //const iconCode = data.weather[0].icon;
+      //iconShow.src = 'https://openweathermap.org/img/wn/${iconCode}@2x.png';
 
     
 
