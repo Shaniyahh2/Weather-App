@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cloudShow.innerHTML = "";
       humidityShow.innerHTML = "";
       windShow.innerHTML = "";
-      containerApp.style.backgroundImage = "";
+      containerApp.style.backgroundImage = `url(./images/${timeOfDay}/S{imageFile})`;
     };
   
     const updateBackgroundImage = (data) => {
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             default:
                 imageFile = "cloudy-condition.jpg";
         }
-        containerApp.style.backgroundImage = 'url(./images/${timeOfDay}/${imageFile})';
+        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/${imageFile})`;
     };
 
         
