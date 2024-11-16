@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
             default:
                 imageFile = "cloudy-condition.jpg";
         }
-        containerApp.style.backroundImage = 'url(./images/${timeOfDay}/${imageFile})';
+        containerApp.style.backgroundImage = 'url(./images/${timeOfDay}/${imageFile})';
     };
 
         
