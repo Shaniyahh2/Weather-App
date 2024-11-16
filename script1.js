@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
       humidityShow.innerHTML = `${data.main.humidity}%`;
       windShow.innerHTML = `${data.wind.speed} km/h`;
 
-        const iconCode = data.weather[0].icon;
-        document.querySelector('icoo').src = 'https://openweathermap.org/img/wn/${iconCode}@2x.png';
+        //const iconCode = data.weather[0].icon;
+        //document.querySelector('icoo').src = 'https://openweathermap.org/img/wn/${iconCode}@2x.png';
 
     
 
