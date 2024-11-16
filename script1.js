@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       dateShow.innerHTML = date.toLocaleDateString(undefined, options);
       timeShow.innerHTML = `${hours}:${minutes}:${seconds}`;
       nameShow.innerHTML = data.name;
-      iconShow.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      //iconShow.src = `./icons/day/${data.weather[0].icon}.svg`;
   
       cloudShow.innerHTML = `${data.clouds.all}%`;
       humidityShow.innerHTML = `${data.main.humidity}%`;
@@ -103,20 +103,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateBackgroundImage = (data) => {
       let timeOfDay = data.sys.sunset * 1000 > Date.now() ? "day" : "night";
   
-      const code = data.weather[0].id;
-  
-      if (code === 800) {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/clear.jpg)`;
-      } else if (code >= 801 && code <= 804) {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/cloudy.jpg)`;
-      } else if (code >= 500 && code <= 531) {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/rainy.jpg)`;
-      } else if (code >= 600 && code <= 622) {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/snowy.jpg)`;
-      } else {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/default.jpg)`;
-      }
+      const condition = data.weather[0].main.toLowerCase();
+
+        let imageFile = "";
+
+        switch(condition){
+            case "clear":
+                imageFile = "clear-condition.jpg";
+                break; 
+            case "clouds":
+                imageFile = "cloudy-condition.jpg";
+                break;
+            case "rain":
+                imageFile = "rainy-condition.jpg";
+                break; 
+            case "snow":
+                imageFile = "snowy-condition.jpg";
+                break; 
+            default:
+                imageFile = "cloudy-condition.jpg";
+        }
+        containerApp.style.backroundImage = 'url(./images/${timeOfDay}/${imageFile})';
     };
+
+        
   
     fetchWeatherData();
     containerApp.style.opacity = "1";
