@@ -131,6 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
             default:
                 imageFile = "cloudy-condition.jpg";
         }
+
+        console.log(`Generated image path : ./images/${timeOfDay}/${imageFile}`);
         containerApp.style.backgroundImage = `url(./images/${timeOfDay}/${imageFile})`;
     };
 
