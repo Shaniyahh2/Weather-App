@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cloudShow.innerHTML = "";
       humidityShow.innerHTML = "";
       windShow.innerHTML = "";
-      containerApp.style.backgroundImage = `url(./images/${timeOfDay}/S{imageFile})`;
+      containerApp.style.backgroundImage = `url(./images/${timeOfDay}/${imageFile})`;
     };
   
     const updateBackgroundImage = (data) => {
