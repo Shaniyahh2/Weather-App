@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // const containerApp = document.querySelector(".small-container");
+    
     const containerApp = document.querySelector(".whole-container");
     const temp = document.querySelector(".temp-details");
     const dateShow = document.querySelector(".date");
@@ -78,11 +79,22 @@ document.addEventListener("DOMContentLoaded", () => {
       dateShow.innerHTML = date.toLocaleDateString(undefined, options);
       timeShow.innerHTML = `${hours}:${minutes}:${seconds}`;
       nameShow.innerHTML = data.name;
-      iconShow.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      //iconShow.src = `./icons/day/${data.weather[0].icon}.svg`;
+
+      const iconShow = document.querySelector(".icoo");
+      iconShow.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      iconShow.alt = data.weather[0].description;
   
       cloudShow.innerHTML = `${data.clouds.all}%`;
       humidityShow.innerHTML = `${data.main.humidity}%`;
       windShow.innerHTML = `${data.wind.speed} km/h`;
+
+      //const iconCode = data.weather[0].icon;
+      //iconShow.src = 'https://openweathermap.org/img/wn/${iconCode}@2x.png';
+
+    
+
+        
   
       updateBackgroundImage(data);
     };
@@ -97,26 +109,38 @@ document.addEventListener("DOMContentLoaded", () => {
       cloudShow.innerHTML = "";
       humidityShow.innerHTML = "";
       windShow.innerHTML = "";
-      containerApp.style.backgroundImage = "";
+      containerApp.style.backgroundImage = `url(./images/${timeOfDay}/${imageFile})`;
     };
   
     const updateBackgroundImage = (data) => {
       let timeOfDay = data.sys.sunset * 1000 > Date.now() ? "day" : "night";
   
-      const code = data.weather[0].id;
-  
-      if (code === 800) {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/clear.jpg)`;
-      } else if (code >= 801 && code <= 804) {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/cloudy.jpg)`;
-      } else if (code >= 500 && code <= 531) {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/rainy.jpg)`;
-      } else if (code >= 600 && code <= 622) {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/snowy.jpg)`;
-      } else {
-        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/default.jpg)`;
-      }
+      const condition = data.weather[0].main.toLowerCase();
+
+        let imageFile = "";
+
+        switch(condition){
+            case "clear":
+                imageFile = "clear-condition.jpg";
+                break; 
+            case "clouds":
+                imageFile = "cloudy-condition.jpg";
+                break;
+            case "rain":
+                imageFile = "rainy-condition.jpg";
+                break; 
+            case "snow":
+                imageFile = "snowy-condition.jpg";
+                break; 
+            default:
+                imageFile = "cloudy-condition.jpg";
+        }
+
+        console.log(`Generated image path : ./images/${timeOfDay}/${imageFile}`);
+        containerApp.style.backgroundImage = `url(./images/${timeOfDay}/${imageFile})`;
     };
+
+        
   
     fetchWeatherData();
     containerApp.style.opacity = "1";
